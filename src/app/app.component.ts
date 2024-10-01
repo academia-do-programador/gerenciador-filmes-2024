@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FilmeService } from './services/filme.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  constructor(private filmeService: FilmeService) {}
+
+  ngOnInit(): void {
+    this.filmeService.selecionarFilmesPopulares().subscribe((f) => {
+      console.log(f);
+    });
+  }
+}
