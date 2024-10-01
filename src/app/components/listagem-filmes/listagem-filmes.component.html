@@ -24,14 +24,16 @@
           {{ filme.titulo }}
         </p>
 
-        <small class="card-subtitle">{{ filme.lancamento }}</small>
+        <small class="card-subtitle text-secondary">{{
+          filme.lancamento
+        }}</small>
       </div>
     </div>
   </div>
 </section>
 
 <section
-  *ngIf="filmes.length > 0"
+  *ngIf="!carregandoListagem"
   aria-label="Paginação"
   class="row justify-content-center mt-4"
 >

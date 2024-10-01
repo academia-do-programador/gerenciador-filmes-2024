@@ -13,11 +13,14 @@ import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 export class ListagemFilmesComponent implements OnInit {
   public filmes: ListagemFilme[];
 
+  public carregandoListagem: boolean;
+
   private pagina: number;
 
   constructor(private filmeService: FilmeService) {
     this.filmes = [];
     this.pagina = 1;
+    this.carregandoListagem = false;
   }
 
   ngOnInit(): void {
@@ -25,6 +28,8 @@ export class ListagemFilmesComponent implements OnInit {
   }
 
   public buscarFilmesPopulares() {
+    this.carregandoListagem = true;
+
     this.filmeService.selecionarFilmesPopulares(this.pagina).subscribe((f) => {
       const resultados = f.results as any[];
 
@@ -33,6 +38,8 @@ export class ListagemFilmesComponent implements OnInit {
       this.filmes.push(...filmesMapeados);
 
       this.pagina++;
+
+      this.carregandoListagem = false;
     });
   }
 
