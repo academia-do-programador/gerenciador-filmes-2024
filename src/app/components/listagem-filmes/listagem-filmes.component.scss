@@ -1,3 +1,17 @@
+.app-card-filme {
+  transition: color, box-shadow 200ms ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.65);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.65);
+
+    .app-titulo-card {
+      color: #209fc2;
+    }
+  }
+}
+
 .app-porcentagem-nota {
   background-color: #081c22;
   color: #f3f3f3;

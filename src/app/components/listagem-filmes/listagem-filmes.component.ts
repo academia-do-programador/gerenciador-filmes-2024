@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmeService } from '../../services/filme.service';
 import { ListagemFilme } from '../../models/listagem-filme.model';
-import { formatDate, NgClass, NgForOf } from '@angular/common';
+import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass],
+  imports: [NgForOf, NgClass, NgIf],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss',
 })

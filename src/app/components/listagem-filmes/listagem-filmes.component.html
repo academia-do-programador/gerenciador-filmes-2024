@@ -2,7 +2,7 @@
 
 <section class="row justify-content-start g-3 mt-3">
   <div *ngFor="let filme of filmes" class="col-md-4 col-lg-2">
-    <div class="card rounded-3 h-100">
+    <div class="app-card-filme card rounded-3 h-100">
       <img
         class="card-img-top"
         [src]="filme.urlImagem"
@@ -20,7 +20,9 @@
           <i class="app-icone-porcentagem bi bi-percent"></i>
         </span>
 
-        <p class="card-title fw-semibold mb-0">{{ filme.titulo }}</p>
+        <p class="app-titulo-card card-title fw-semibold mb-0">
+          {{ filme.titulo }}
+        </p>
 
         <small class="card-subtitle">{{ filme.lancamento }}</small>
       </div>
@@ -28,7 +30,11 @@
   </div>
 </section>
 
-<section aria-label="Paginação" class="row justify-content-center mt-4">
+<section
+  *ngIf="filmes.length > 0"
+  aria-label="Paginação"
+  class="row justify-content-center mt-4"
+>
   <button
     (click)="buscarFilmesPopulares()"
     class="app-botao-gradiente col-md-6 col-lg-4 btn btn-lg fw-semibold rounded-pill"
