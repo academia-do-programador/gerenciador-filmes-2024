@@ -43,6 +43,15 @@
             </div>
           </header>
 
+          <article class="ratio ratio-16x9 mt-4">
+            <iframe
+              [attr.aria-label]="'Trailer de ' + detalhes.titulo"
+              [src]="detalhes.videos[0].sourceUrl"
+              type="video/mp4"
+              class="rounded-3"
+            ></iframe>
+          </article>
+
           <article class="mt-4">
             <h3>Sinopse</h3>
 

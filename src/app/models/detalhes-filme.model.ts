@@ -1,3 +1,5 @@
+import { VideoFilme } from './video-filme.model';
+
 export interface DetalhesFilme {
   id: number;
   titulo: string;
@@ -8,4 +10,6 @@ export interface DetalhesFilme {
   urlFundo: string;
 
   generos: string;
+
+  videos: VideoFilme[];
 }
