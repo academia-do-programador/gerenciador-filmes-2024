@@ -3,6 +3,8 @@
 <section class="row justify-content-start g-3 mt-3">
   <div *ngFor="let filme of filmes" class="col-md-4 col-lg-2">
     <div class="app-card-filme card rounded-3 h-100">
+      <a class="stretched-link" [routerLink]="['/filmes', filme.id]"></a>
+
       <img
         class="card-img-top"
         [src]="filme.urlImagem"
