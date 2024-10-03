@@ -15,4 +15,6 @@ export interface DetalhesFilme {
   videos: VideoFilme[];
 
   elencoPrincipal: MembroCreditos[];
+
+  favorito: boolean;
 }

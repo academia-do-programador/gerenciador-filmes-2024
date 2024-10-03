@@ -31,6 +31,23 @@
             <div
               class="d-flex flex-wrap justify-content-between align-items-center gap-3"
             >
+              <button
+                *ngIf="!detalhes.favorito"
+                (click)="alterarStatusFavorito(detalhes.id)"
+                title="Favoritar"
+                class="btn btn-outline-dark rounded-circle py-1"
+              >
+                <i class="bi bi-heart fs-3 m-auto"></i>
+              </button>
+              <button
+                *ngIf="detalhes.favorito"
+                (click)="alterarStatusFavorito(detalhes.id)"
+                title="Remover favorito"
+                class="btn btn-outline-dark rounded-circle py-1"
+              >
+                <i class="bi bi-heart-fill fs-3 m-auto"></i>
+              </button>
+
               <span
                 [ngClass]="mapearCorDaNota(detalhes.porcentagemNota)"
                 class="app-porcentagem-nota d-flex justify-content-center align-items-center rounded-circle"
@@ -66,7 +83,10 @@
 <section *ngIf="detalhes" class="container my-4">
   <h4>Elenco Principal</h4>
 
-  <div id="scrollbar-customizado" class="row flex-nowrap overflow-x-scroll g-2 pb-3 mt-4">
+  <div
+    id="scrollbar-customizado"
+    class="row flex-nowrap overflow-x-scroll g-2 pb-3 mt-4"
+  >
     <div *ngFor="let membro of detalhes.elencoPrincipal" class="col-4 col-lg-2">
       <div class="card rounded-3 h-100">
         <img
