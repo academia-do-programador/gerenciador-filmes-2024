@@ -6,11 +6,12 @@ import { RouterLink } from '@angular/router';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { FilmesFavoritosComponent } from "../filmes-favoritos/filmes-favoritos.component";
+import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
 
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass, NgIf, RouterLink, FilmesFavoritosComponent],
+  imports: [NgForOf, NgClass, NgIf, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
   templateUrl: './listagem-filmes.component.html',
   styleUrl: './listagem-filmes.component.scss',
 })

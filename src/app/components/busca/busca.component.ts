@@ -3,19 +3,26 @@ import { FilmeService } from '../../services/filme.service';
 import { ResultadoBuscaFilme } from '../../models/resultado-busca-filme.model';
 import { ListagemFilme } from '../../models/listagem-filme.model';
 import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { BarraBuscaComponent } from '../barra-busca/barra-busca.component';
 
 @Component({
   selector: 'app-busca',
   standalone: true,
-  imports: [NgIf, NgForOf, NgClass, RouterLink],
+  imports: [NgIf, NgForOf, NgClass, RouterLink, BarraBuscaComponent],
   templateUrl: './busca.component.html',
-  styleUrl: './busca.component.scss',
 })
 export class BuscaComponent {
   public resultadoBusca?: ResultadoBuscaFilme;
 
-  constructor(private filmeService: FilmeService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private filmeService: FilmeService
+  ) {
+    route.queryParams.subscribe((params) => {
+      this.buscar(params['query']);
+    });
+  }
 
   public buscar(query: string, pagina: number = 1): void {
     if (query.length < 1) return;
@@ -23,12 +30,7 @@ export class BuscaComponent {
     this.filmeService.buscarFilmes(query, pagina).subscribe((res) => {
       const novoResultado = this.mapearResultadoBusca(res);
 
-      if (this.resultadoBusca) {
-        this.resultadoBusca.pagina = novoResultado.pagina;
-        this.resultadoBusca.filmes.push(...novoResultado.filmes);
-      } else {
-        this.resultadoBusca = novoResultado;
-      }
+      this.resultadoBusca = novoResultado;
     });
   }
 
