@@ -15,25 +15,15 @@ import { RouterLink } from '@angular/router';
 export class BuscaComponent {
   public resultadoBusca?: ResultadoBuscaFilme;
 
-  public maximoPaginasAlcancado: boolean;
-
-  constructor(private filmeService: FilmeService) {
-    this.maximoPaginasAlcancado = false;
-  }
+  constructor(private filmeService: FilmeService) {}
 
   public buscar(query: string, pagina: number = 1): void {
     if (query.length < 1) return;
-
-    this.maximoPaginasAlcancado = false;
 
     this.filmeService.buscarFilmes(query, pagina).subscribe((res) => {
       const novoResultado = this.mapearResultadoBusca(res);
 
       if (this.resultadoBusca) {
-        if (pagina >= this.resultadoBusca?.quantidadePaginas) {
-          this.maximoPaginasAlcancado = true;
-        }
-
         this.resultadoBusca.pagina = novoResultado.pagina;
         this.resultadoBusca.filmes.push(...novoResultado.filmes);
       } else {
@@ -64,7 +54,9 @@ export class BuscaComponent {
     return {
       id: obj.id,
       titulo: obj.title,
-      lancamento: formatDate(obj.release_date, 'mediumDate', 'pt-BR'),
+      lancamento: obj.release_date
+        ? formatDate(obj.release_date, 'mediumDate', 'pt-BR')
+        : 'Data não disponível',
       urlImagem: 'https://image.tmdb.org/t/p/w300/' + obj.poster_path,
       porcentagemNota: (obj.vote_average * 10).toFixed(0),
     };

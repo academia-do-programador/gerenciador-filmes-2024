@@ -88,11 +88,7 @@
         </div>
       </div>
 
-      <section
-        *ngIf="!maximoPaginasAlcancado"
-        aria-label="Paginação"
-        class="row justify-content-center mt-4"
-      >
+      <section aria-label="Paginação" class="row justify-content-center mt-4">
         <button
           (click)="buscar(inputQuery.value, resultadoBusca.pagina + 1)"
           class="app-botao-gradiente col-md-6 col-lg-4 btn btn-lg fw-semibold rounded-pill"
