@@ -5,15 +5,25 @@ import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { FilmesFavoritosComponent } from "../filmes-favoritos/filmes-favoritos.component";
-import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
+import { FilmesFavoritosComponent } from '../filmes-favoritos/filmes-favoritos.component';
+import { BarraBuscaComponent } from '../barra-busca/barra-busca.component';
+import { CardFilmeComponent } from '../shared/card-filme/card-filme.component';
+import { BotaoPaginacaoComponent } from '../shared/botao-paginacao/botao-paginacao.component';
 
 @Component({
   selector: 'app-listagem-filmes',
   standalone: true,
-  imports: [NgForOf, NgClass, NgIf, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent],
+  imports: [
+    NgForOf,
+    NgClass,
+    NgIf,
+    RouterLink,
+    FilmesFavoritosComponent,
+    BarraBuscaComponent,
+    CardFilmeComponent,
+    BotaoPaginacaoComponent,
+  ],
   templateUrl: './listagem-filmes.component.html',
-  styleUrl: './listagem-filmes.component.scss',
 })
 export class ListagemFilmesComponent implements OnInit {
   public filmes: ListagemFilme[];
@@ -56,22 +66,13 @@ export class ListagemFilmesComponent implements OnInit {
     });
   }
 
-  public mapearCorDaNota(porcentagemNota: string): string {
-    const numeroNota = Number(porcentagemNota);
-
-    if (numeroNota > 0 && numeroNota <= 30) return 'app-borda-nota-mais-baixa';
-    else if (numeroNota > 30 && numeroNota <= 50) return 'app-borda-nota-baixa';
-    else if (numeroNota > 50 && numeroNota <= 75) return 'app-borda-nota-media';
-    else return 'app-borda-nota-alta';
-  }
-
   private mapearListagemFilme(obj: any): ListagemFilme {
     return {
       id: obj.id,
       titulo: obj.title,
       lancamento: formatDate(obj.release_date, 'mediumDate', 'pt-BR'),
       urlImagem: 'https://image.tmdb.org/t/p/w300/' + obj.poster_path,
-      porcentagemNota: (obj.vote_average * 10).toFixed(0),
+      porcentagemNota: obj.vote_average * 10,
     };
   }
 }

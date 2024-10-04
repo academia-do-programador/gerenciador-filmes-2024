@@ -10,11 +10,12 @@ import { MembroCreditos } from '../../models/membro-creditos.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { ToastrService } from 'ngx-toastr';
+import { IconeAvaliacaoUsuariosComponent } from '../shared/icone-avaliacao-usuarios/icone-avaliacao-usuarios.component';
 
 @Component({
   selector: 'app-detalhes-filme',
   standalone: true,
-  imports: [NgIf, NgClass, NgForOf],
+  imports: [NgIf, NgClass, NgForOf, IconeAvaliacaoUsuariosComponent],
   templateUrl: './detalhes-filme.component.html',
   styleUrl: './detalhes-filme.component.scss',
 })
@@ -88,7 +89,7 @@ export class DetalhesFilmeComponent implements OnInit {
       titulo: obj.title,
       sinopse: obj.overview,
       lancamento: formatDate(obj.release_date, 'mediumDate', 'pt-BR'),
-      porcentagemNota: (obj.vote_average * 10).toFixed(0),
+      porcentagemNota: obj.vote_average * 10,
       urlPoster: 'https://image.tmdb.org/t/p/w300' + obj.poster_path,
       urlFundo: 'https://image.tmdb.org/t/p/original' + obj.backdrop_path,
 

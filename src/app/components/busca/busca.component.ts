@@ -5,20 +5,25 @@ import { ListagemFilme } from '../../models/listagem-filme.model';
 import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BarraBuscaComponent } from '../barra-busca/barra-busca.component';
+import { CardFilmeComponent } from '../shared/card-filme/card-filme.component';
 
 @Component({
   selector: 'app-busca',
   standalone: true,
-  imports: [NgIf, NgForOf, NgClass, RouterLink, BarraBuscaComponent],
+  imports: [
+    NgIf,
+    NgForOf,
+    NgClass,
+    RouterLink,
+    BarraBuscaComponent,
+    CardFilmeComponent,
+  ],
   templateUrl: './busca.component.html',
 })
 export class BuscaComponent {
   public resultadoBusca?: ResultadoBuscaFilme;
 
-  constructor(
-    private route: ActivatedRoute,
-    private filmeService: FilmeService
-  ) {
+  constructor(route: ActivatedRoute, private filmeService: FilmeService) {
     route.queryParams.subscribe((params) => {
       this.buscar(params['query']);
     });
@@ -60,7 +65,7 @@ export class BuscaComponent {
         ? formatDate(obj.release_date, 'mediumDate', 'pt-BR')
         : 'Data não disponível',
       urlImagem: 'https://image.tmdb.org/t/p/w300/' + obj.poster_path,
-      porcentagemNota: (obj.vote_average * 10).toFixed(0),
+      porcentagemNota: obj.vote_average * 10,
     };
   }
 }

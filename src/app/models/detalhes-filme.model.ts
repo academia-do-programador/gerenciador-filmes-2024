@@ -6,7 +6,7 @@ export interface DetalhesFilme {
   titulo: string;
   sinopse: string;
   lancamento: string;
-  porcentagemNota: string;
+  porcentagemNota: number;
   urlPoster: string;
   urlFundo: string;
 

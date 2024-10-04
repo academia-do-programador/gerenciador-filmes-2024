@@ -48,14 +48,10 @@
                 <i class="bi bi-heart-fill fs-3 m-auto"></i>
               </button>
 
-              <span
-                [ngClass]="mapearCorDaNota(detalhes.porcentagemNota)"
-                class="app-porcentagem-nota d-flex justify-content-center align-items-center rounded-circle"
-              >
-                <span class="app-valor-porcentagem fw-semibold">{{
-                  detalhes.porcentagemNota
-                }}</span>
-              </span>
+              <app-icone-avaliacao-usuarios
+                [avaliacao]="detalhes.porcentagemNota"
+                [tamanho]="50"
+              ></app-icone-avaliacao-usuarios>
               <strong>Avaliação dos Usuários</strong>
             </div>
           </header>
