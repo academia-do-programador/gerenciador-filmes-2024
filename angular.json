@@ -123,6 +123,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://academia-do-programador.github.io/gerenciador-filmes-2024/",
+            "repo": "https://github.com/academia-do-programador/gerenciador-filmes-2024.git"
+          }
         }
       }
     }
