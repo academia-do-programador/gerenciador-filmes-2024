@@ -14,3 +14,18 @@
     border-radius: 5px;
   }
 }
+
+.app-banner-fundo {
+  background-color: rgba(0, 0, 0, 0.212);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app-overlay-banner {
+  background-image: linear-gradient(
+    to right,
+    rgba(220.5, 220.5, 220.5, 1) calc((50vw - 170px) - 340px),
+    rgba(220.5, 220.5, 220.5, 0.84) 50%,
+    rgba(220.5, 220.5, 220.5, 0.84) 100%
+  );
+}
